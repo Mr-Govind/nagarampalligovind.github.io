@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagarampalli Govind | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bg: '#0a0a0f',
+                        surface: '#111118',
+                        accent: '#ffd166',
+                        text1: '#ffffff',
+                        text2: '#b8b8c5',
+                        border: '#2a2a35'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        html { 
+            scroll-behavior: smooth; 
+            scroll-padding-top: 100px; 
+        }
+        body { 
+            background-color: #0a0a0f; 
+            color: #ffffff; 
+            margin: 0; 
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffd166; }
+        .glass-panel { background: rgba(17, 17, 24, 0.7); backdrop-filter: blur(10px); border: 1px solid #2a2a35; }
+        .nav-glass { background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid #2a2a35; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const portfolioData = {
+            name: "Nagarampalli Govind",
+            role: "Python Full Stack Developer • AI Workflow Engineer • Pega CSA",
+            location: "Hyderabad, India",
+            contact: "+91 9133650427 | nagarampalligovind@gmail.com",
+            summary: "Computer Science graduate (Data Science) with strong foundations in Python, backend development, and AI workflows. Experienced in building real-time applications, designing API-based systems, and supporting AI pipelines through data annotation and processing. Additionally brings exposure to requirement analysis and stakeholder collaboration, focused on developing scalable, data-driven applications.",
+            skills: [
+                { title: "Programming", items: "Python, JavaScript, Java" },
+                { title: "Backend Development", items: "Django, Flask, REST APIs, HTML/CSS" },
+                { title: "Databases", items: "SQL, MySQL, PostgreSQL (Supabase)" },
+                { title: "AI & Data", items: "OpenCV, Data Annotation, Validation, ML" },
+                { title: "Cloud Platforms", items: "Render, Supabase, GCP, Azure" },
+                { title: "DevOps & Tools", items: "Git, GitHub, CI/CD Basics" },
+                { title: "Enterprise Platforms", items: "Pega PRPC (CSA, CSSA Certified)" },
+                { title: "Core Architecture", items: "OOP, Data Structures, Problem Solving" }
+            ],
+            projects: [
+                {
+                    id: 1,
+                    title: "Driver Drowsiness Detection System",
+                    tech: "Python, OpenCV, NumPy",
+                    problem: "Needed a real-time computer vision system to monitor driver alertness and prevent accidents.",
+                    workflow: [
+                        "Processed live video streams",
+                        "Implemented fatigue detection logic using facial analysis",
+                        "Designed alert mechanisms triggered by behavioral patterns",
+                        "Focused on performance optimization for real-time processing"
+                    ],
+                    github: "https://github.com/Mr-Govind/drowsyness_detection_using_python"
+                },
+                {
+                    id: 2,
+                    title: "Cryptography-Based E-Voting System",
+                    tech: "Python, Django, SQL",
+                    problem: "Required a secure backend system for digital voting with strong authentication mechanisms.",
+                    workflow: [
+                        "Designed database models",
+                        "Implemented structured data workflows",
+                        "Applied cryptographic concepts for secure data handling and integrity"
+                    ],
+                    github: "#"
+                },
+                {
+                    id: 3,
+                    title: "Chat-to-Voice Web Application",
+                    tech: "Python, APIs, Render, CI/CD",
+                    problem: "Needed a real-time text-to-speech interface simulating conversational interaction.",
+                    workflow: [
+                        "Integrated backend logic with APIs for processing user input",
+                        "Generated real-time audio output",
+                        "Deployed application using cloud infrastructure with CI/CD-based updates"
+                    ],
+                    github: "https://github.com/Mr-Govind/edith"
+                },
+                {
+                    id: 4,
+                    title: "School Management CRM System",
+                    tech: "Python, PostgreSQL, Backend Services",
+                    problem: "Required structured workflows for organizational data management.",
+                    workflow: [
+                        "Designed and developed backend services for managing student and administrative data",
+                        "Implemented CRUD operations",
+                        "Optimized database queries for efficient data retrieval"
+                    ],
+                    github: "https://github.com/Mr-Govind/school-management-system"
+                }
+            ],
+            pega: {
+                versions: "Pega PRPC V8.7, V8.8",
+                certs: ["Pega Certified System Architect (CSA)", "Pega Certified Senior System Architect (CSSA)"],
+                useCases: [
+                    "Food Order Management",
+                    "Hospital Management",
+                    "Insurance Claims Processing",
+                    "Banking and Distribution Systems"
+                ],
+                skills: "Designed case lifecycles, flows, decision rules, UI components, debugging (Tracer, Clipboard), rule resolution"
+            },
+            experience: [
+                {
+                    role: "Business Development Associate",
+                    company: "Virtutix IT Services Pvt. Ltd. | Remote",
+                    duration: "Jul 2025 - May 2026",
+                    desc: "Engaged with clients to understand requirements, supported analysis, assisted in solution discussions, and acted as a bridge between technical teams and stakeholders."
+                },
+                {
+                    role: "AIDO Analyst (Contract)",
+                    company: "Teleperformance | Remote",
+                    duration: "Dec 2024 - Jan 2025",
+                    desc: "Performed data annotation for AI/ML models, ensured data quality via validation, and contributed to structured workflows supporting AI development pipelines."
+                },
+                {
+                    role: "Cyber Security Intern",
+                    company: "Smart Internz",
+                    duration: "Oct 2023 - Apr 2024",
+                    desc: "Learned foundational concepts in network security, threat detection, and gained exposure to defensive strategies and system monitoring."
+                }
+            ],
+            education: {
+                degree: "Bachelor of Technology (CSE - Data Science)",
+                school: "Avanthi Institute of Engineering and Technology | 2020-2024",
+                score: "CGPA: 7.72/10"
+            }
+        };
+
+        const IconExternal = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>;
+        const IconClose = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>;
+        const IconMenu = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>;
+        const IconChevronDown = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" className={className} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>;
+        const IconGithub = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>;
+        const IconLinkedin = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>;
+        const IconMail = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>;
+        const IconDownload = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>;
+
+        const App = () => {
+            const [selectedProject, setSelectedProject] = useState(null);
+            const [pegaExpanded, setPegaExpanded] = useState(false);
+            const [isScrolled, setIsScrolled] = useState(false);
+            const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setIsScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            useEffect(() => {
+                const svgFavicon = `
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                        <rect width="100" height="100" fill="#000000"/>
+                        <text x="50%" y="55%" font-family="Arial, sans-serif" font-weight="bold" font-size="50" fill="#ffd166" dominant-baseline="middle" text-anchor="middle">NG</text>
+                    </svg>
+                `;
+                const encoded = encodeURIComponent(svgFavicon);
+                const link = document.createElement('link');
+                link.type = 'image/svg+xml';
+                link.rel = 'icon';
+                link.href = `data:image/svg+xml,${encoded}`;
+                document.head.appendChild(link);
+            }, []);
+
+            const navLinks = [
+                { name: "About", href: "#about" },
+                { name: "Skills", href: "#skills" },
+                { name: "Projects", href: "#projects" },
+                { name: "Experience", href: "#experience" },
+                { name: "Pega", href: "#Pega" },
+                { name: "Contact", href: "#contact" },
+            ];
+
+            return (
+                <div className="min-h-screen relative font-sans selection:bg-accent selection:text-bg overflow-x-hidden">
+                    
+                    {/* Fixed Navbar */}
+                    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'nav-glass py-4' : 'bg-transparent py-6'}`}>
+                        <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+                            <a href="#" className="text-2xl font-bold tracking-tighter text-text1 hover:text-accent transition-colors">
+                                NG<span className="text-accent">.</span>
+                            </a>
+
+                            {/* Desktop Nav */}
+                            <div className="hidden md:flex items-center gap-8">
+                                <div className="flex gap-6">
+                                    {navLinks.map((link) => (
+                                        <a key={link.name} href={link.href} className="text-sm font-mono text-text2 hover:text-accent transition-colors">
+                                            {link.name}
+                                        </a>
+                                    ))}
+                                </div>
+                                <a 
+                                    href="https://drive.google.com/uc?export=download&id=1bLv1G1JdGP5ACWt2_wq9FGBH-6cWdWo0" 
+                                    target="_blank" 
+                                    className="flex items-center gap-2 px-5 py-2.5 border border-accent text-accent text-sm font-mono rounded hover:bg-accent hover:text-bg transition-all duration-300"
+                                >
+                                    <IconDownload /> Resume
+                                </a>
+                            </div>
+
+                            {/* Mobile Toggle */}
+                            <button 
+                                className="md:hidden text-text1 hover:text-accent transition-colors"
+                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            >
+                                {mobileMenuOpen ? <IconClose /> : <IconMenu />}
+                            </button>
+                        </div>
+
+                        {/* Mobile Menu */}
+                        {mobileMenuOpen && (
+                            <div className="absolute top-full left-0 w-full bg-surface border-b border-border py-4 px-6 flex flex-col gap-4 md:hidden shadow-2xl">
+                                {navLinks.map((link) => (
+                                    <a 
+                                        key={link.name} 
+                                        href={link.href} 
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className="text-sm font-mono text-text2 hover:text-accent transition-colors py-2"
+                                    >
+                                        {link.name}
+                                    </a>
+                                ))}
+                                <a 
+                                    href="https://drive.google.com/uc?export=download&id=1bLv1G1JdGP5ACWt2_wq9FGBH-6cWdWo0" 
+                                    target="_blank" 
+                                    className="flex items-center justify-center gap-2 w-full mt-2 px-5 py-3 border border-accent text-accent text-sm font-mono rounded hover:bg-accent hover:text-bg transition-all duration-300"
+                                >
+                                    <IconDownload /> Download Resume
+                                </a>
+                            </div>
+                        )}
+                    </nav>
+
+                    {/* Abstract Background Gradient */}
+                    <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+                        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-accent/5 blur-[120px] rounded-full"></div>
+                        <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[30%] bg-[#b8b8c5]/5 blur-[100px] rounded-full"></div>
+                    </div>
+
+                    <div className="max-w-5xl mx-auto px-6 py-20 relative z-10 pt-32">
+                        
+                        {/* HERO SECTION */}
+                        <header className="animate-fade-in mb-32 pt-10">
+                            <div className="inline-block px-3 py-1 mb-6 border border-border rounded-full bg-surface text-text2 text-sm font-mono tracking-wide">
+                                {portfolioData.location}
+                            </div>
+                            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-text1 mb-6 leading-tight">
+                                {portfolioData.name}<span className="text-accent">.</span>
+                            </h1>
+                            <h2 className="text-xl md:text-2xl text-text2 font-light mb-10 border-l-2 border-accent pl-6 py-2 max-w-3xl">
+                                {portfolioData.role}
+                            </h2>
+                            <div className="flex flex-wrap gap-4">
+                                <a href="#projects" className="px-8 py-3 bg-accent text-bg font-semibold rounded-md transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,209,102,0.2)]">
+                                    View Projects
+                                </a>
+                                <a href="https://github.com/Mr-Govind" target="_blank" className="p-3 border border-border rounded-md bg-surface text-text1 transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-1">
+                                    <IconGithub />
+                                </a>
+                                <a href="https://linkedin.com/in/nagarampalli-govind" target="_blank" className="p-3 border border-border rounded-md bg-surface text-text1 transition-all duration-300 hover:border-accent hover:text-accent hover:-translate-y-1">
+                                    <IconLinkedin />
+                                </a>
+                            </div>
+                        </header>
+
+                        {/* ABOUT & EDUCATION SECTION */}
+                        <section id="about" className="mb-32 animate-slide-up scroll-mt-24" style={{ animationDelay: '0.1s' }}>
+                            <h3 className="text-3xl font-bold text-text1 mb-10 flex items-center">
+                                About Me
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+                                <div className="md:col-span-7">
+                                    <p className="text-text2 text-lg leading-relaxed mb-6">
+                                        {portfolioData.summary}
+                                    </p>
+                                    
+                                    {/* Education Target */}
+                                    <div id="education" className="glass-panel p-6 rounded-lg border-border border scroll-mt-24 mt-8">
+                                        <h4 className="text-accent font-mono text-sm mb-4 uppercase tracking-widest">Education</h4>
+                                        <p className="text-text1 font-semibold text-lg">{portfolioData.education.degree}</p>
+                                        <p className="text-text2 mt-2">{portfolioData.education.school}</p>
+                                        <p className="text-text2 text-sm mt-1">{portfolioData.education.score}</p>
+                                    </div>
+                                </div>
+                                <div className="md:col-span-5 flex flex-col justify-center glass-panel p-8 rounded-lg border-border border">
+                                    <h4 className="text-accent font-mono text-sm mb-6 uppercase tracking-widest">Focus Areas</h4>
+                                    <ul className="space-y-4">
+                                        <li className="flex items-start">
+                                            <span className="text-accent mr-3">▹</span>
+                                            <span className="text-text1 font-medium">Backend & API Integration</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-accent mr-3">▹</span>
+                                            <span className="text-text1 font-medium">AI Pipeline Support & Validation</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-accent mr-3">▹</span>
+                                            <span className="text-text1 font-medium">Real-time Application Development</span>
+                                        </li>
+                                        <li className="flex items-start">
+                                            <span className="text-accent mr-3">▹</span>
+                                            <span className="text-text1 font-medium">Enterprise Workflows (Pega)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* SKILLS SECTION */}
+                        <section id="skills" className="mb-32 animate-slide-up scroll-mt-24" style={{ animationDelay: '0.2s' }}>
+                            <h3 className="text-3xl font-bold text-text1 mb-10 flex items-center">
+                                Technical Arsenal
+                            </h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {portfolioData.skills.map((skill, index) => (
+                                    <div key={index} className="glass-panel p-6 rounded-lg transition-all duration-300 hover:-translate-y-2 hover:border-accent group">
+                                        <h4 className="text-accent font-mono text-xs uppercase tracking-widest mb-3">{skill.title}</h4>
+                                        <p className="text-text1 font-medium leading-relaxed">{skill.items}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* PROJECTS SECTION */}
+                        <section id="projects" className="mb-32 animate-slide-up scroll-mt-24" style={{ animationDelay: '0.3s' }}>
+                            <h3 className="text-3xl font-bold text-text1 mb-10 flex items-center">
+                                Featured Projects
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {portfolioData.projects.map((project) => (
+                                    <div 
+                                        key={project.id} 
+                                        onClick={() => setSelectedProject(project)}
+                                        className="glass-panel p-8 rounded-lg cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] border-border hover:border-accent/50 group flex flex-col h-full"
+                                    >
+                                        <div className="flex justify-between items-start mb-6">
+                                            <div className="p-3 bg-surface rounded-md text-accent">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                                            </div>
+                                            <IconExternal />
+                                        </div>
+                                        <h4 className="text-2xl font-bold text-text1 mb-3 group-hover:text-accent transition-colors">
+                                            {project.title}
+                                        </h4>
+                                        <p className="text-text2 mb-6 flex-grow">
+                                            {project.tech}
+                                        </p>
+                                        <div className="mt-auto inline-flex items-center text-sm font-mono text-accent">
+                                            View Details <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* PEGA / ENTERPRISE SECTION */}
+                        <section id="Pega" className="mb-32 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+                            <h3 className="text-3xl font-bold text-text1 mb-10 flex items-center">
+                                Enterprise Pega Expertise
+                            </h3>
+                            <div className="glass-panel rounded-lg overflow-hidden border border-border">
+                                <div className="p-8 border-b border-border bg-surface">
+                                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                        <div>
+                                            <h4 className="text-2xl font-bold text-text1 mb-2">Pega PRPC Systems</h4>
+                                            <p className="text-text2 font-mono text-sm">{portfolioData.pega.versions}</p>
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            {portfolioData.pega.certs.map((cert, i) => (
+                                                <div key={i} className="px-4 py-2 bg-accent/10 border border-accent/20 rounded text-accent font-semibold text-sm">
+                                                    {cert}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <p className="text-text1 mt-6 border-l-2 border-border pl-4 py-1">
+                                        {portfolioData.pega.skills}
+                                    </p>
+                                </div>
+                                <button 
+                                    onClick={() => setPegaExpanded(!pegaExpanded)}
+                                    className="w-full p-6 flex justify-between items-center text-text1 hover:bg-surface transition-colors focus:outline-none"
+                                >
+                                    <span className="font-mono tracking-widest text-sm uppercase">View Implementation UseCases</span>
+                                    <IconChevronDown className={`transform transition-transform duration-300 ${pegaExpanded ? 'rotate-180 text-accent' : 'text-text2'}`} />
+                                </button>
+                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${pegaExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                    <div className="p-8 pt-0 bg-surface">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            {portfolioData.pega.useCases.map((useCase, index) => (
+                                                <div key={index} className="flex items-center p-4 border border-border rounded-md bg-bg">
+                                                    <span className="text-accent font-mono mr-4">0{index + 1}</span>
+                                                    <span className="text-text1 font-medium">{useCase}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* EXPERIENCE SECTION */}
+                        <section id="experience" className="mb-32 animate-slide-up scroll-mt-24" style={{ animationDelay: '0.5s' }}>
+                            <h3 className="text-3xl font-bold text-text1 mb-10 flex items-center">
+                                Professional Journey
+                            </h3>
+                            <div className="space-y-12 pl-4 border-l border-border relative">
+                                {portfolioData.experience.map((exp, index) => (
+                                    <div key={index} className="relative pl-8">
+                                        <div className="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-accent ring-4 ring-bg"></div>
+                                        <div className="flex flex-col md:flex-row md:justify-between md:items-baseline mb-3">
+                                            <h4 className="text-xl font-bold text-text1">{exp.role}</h4>
+                                            <span className="text-accent font-mono text-sm mt-1 md:mt-0">{exp.duration}</span>
+                                        </div>
+                                        <h5 className="text-text2 font-medium mb-4">{exp.company}</h5>
+                                        <p className="text-text2 leading-relaxed bg-surface/50 p-4 rounded border border-border">
+                                            {exp.desc}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* CONTACT SECTION */}
+                        <section id="contact" className="mb-20 animate-slide-up text-center scroll-mt-24" style={{ animationDelay: '0.6s' }}>
+                            <h3 className="text-accent font-mono text-sm uppercase tracking-widest mb-4">What's Next?</h3>
+                            <h2 className="text-4xl md:text-5xl font-bold text-text1 mb-8">Get In Touch</h2>
+                            <p className="text-text2 max-w-xl mx-auto mb-10 text-lg">
+                                Currently open to new opportunities in backend development, AI engineering, and Pega architecture. 
+                                Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                            </p>
+                            <a href="mailto:nagarampalligovind@gmail.com" className="inline-flex items-center justify-center px-8 py-4 border border-accent text-accent font-mono rounded hover:bg-accent/10 transition-colors">
+                                <IconMail /> <span className="ml-3">Say Hello</span>
+                            </a>
+                        </section>
+
+                        <footer className="text-center pb-8 pt-10 border-t border-border mt-20 text-text2 font-mono text-sm">
+                            <p>Designed & Built based on Resume Data</p>
+                        </footer>
+                    </div>
+
+                    {/* PROJECT MODAL */}
+                    {selectedProject && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                            <div className="absolute inset-0 bg-bg/90 backdrop-blur-sm" onClick={() => setSelectedProject(null)}></div>
+                            <div className="relative glass-panel w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl p-8 border border-border shadow-2xl animate-fade-in">
+                                <button 
+                                    className="absolute top-6 right-6 text-text2 hover:text-accent transition-colors"
+                                    onClick={() => setSelectedProject(null)}
+                                >
+                                    <IconClose />
+                                </button>
+                                
+                                <h3 className="text-3xl font-bold text-text1 mb-2 pr-10">{selectedProject.title}</h3>
+                                
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 pb-6 border-b border-border gap-4">
+                                    <p className="text-accent font-mono">{selectedProject.tech}</p>
+                                    <a 
+                                        href={selectedProject.github} 
+                                        target={selectedProject.github !== "#" ? "_blank" : "_self"}
+                                        rel="noreferrer"
+                                        className="inline-flex items-center gap-2 px-4 py-2 border border-border rounded bg-surface hover:border-accent hover:text-accent transition-colors text-sm font-mono text-text2 shrink-0"
+                                    >
+                                        <IconGithub /> View Repository
+                                    </a>
+                                </div>
+                                
+                                <div className="mb-8">
+                                    <h4 className="text-lg font-semibold text-text1 mb-4 uppercase tracking-wider text-sm">The Objective</h4>
+                                    <p className="text-text2 leading-relaxed bg-surface p-4 rounded border border-border">
+                                        {selectedProject.problem}
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h4 className="text-lg font-semibold text-text1 mb-6 uppercase tracking-wider text-sm">Execution Workflow</h4>
+                                    <div className="space-y-4">
+                                        {selectedProject.workflow.map((step, index) => (
+                                            <div key={index} className="flex items-start bg-surface/50 p-4 rounded border border-border/50">
+                                                <span className="text-accent font-mono text-lg font-bold mr-6 w-8 text-right shrink-0">
+                                                    {(index + 1).toString().padStart(2, '0')}.
+                                                </span>
+                                                <p className="text-text1 pt-0.5 leading-relaxed">{step}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
